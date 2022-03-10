@@ -13,7 +13,9 @@ jobs:
     uses: actions/checkout@v1
    
   - name: Install dependencies
-    run: npm install  - name: Install newman
+    run: npm install  
+  
+  - name: Install newman
     run: npm install -g newman
     
   - name: Run the API and Postman's tests
