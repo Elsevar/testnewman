@@ -10,9 +10,6 @@ jobs:
      - name: Check out Git repositor
        uses: actions/checkout@v1
 
-     - name: Install dependencies
-       run: npm install  
-
      - name: Install newman
        run: npm install -g newman
 
