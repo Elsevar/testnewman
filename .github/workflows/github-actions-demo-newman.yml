@@ -1,0 +1,26 @@
+name: postman-pull-request
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]  
+    steps:
+     - name: Check out Git repositor
+       uses: actions/checkout@v2
+       
+     - name: Install dependencies 
+       run: python -m pip install -r requirements.txt
+       
+     - name: Run migrations
+       run: python manage.py migrate
+       
+     - name: Run server
+       run: python manage.py runserver &
+
+     - name: Install newman
+       run: npm install -g newman
+
+     - name: Run the API and Postman's tests
+       run: newman run "Test Collection.postman_collection.json"
