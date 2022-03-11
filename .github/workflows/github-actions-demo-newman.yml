@@ -10,11 +10,14 @@ jobs:
      - name: Check out Git repositor
        uses: actions/checkout@v2
        
-     - name: Check out the files
-       run: ls
-       
      - name: Install dependencies 
        run: python -m pip install -r requirements.txt
+       
+     - name: Run migrations
+       run: python manage.py migrate
+       
+     - name: Run server
+       run: python manage.py runserver &
 
      - name: Install newman
        run: npm install -g newman
